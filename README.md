@@ -12,3 +12,44 @@ Secure coding practices I did:
 
 
 
+**REFLECTION 3**
+
+
+
+1. &nbsp;Explain what principles you apply to your project!
+
+
+
+* I separated the code into controller, service, and repository layers so each layer has a clear responsibility. Each class only has one main job, such as handling requests, processing business logic, or managing data (SRP).
+* I used interfaces for service and repository to allow different implementations without changing existing code (OCP).
+* The implementation classes can replace their interfaces without breaking the system (LSP).
+* I separated large interfaces into smaller ones so classes only depend on the methods they need (ISP).
+* The service depends on repository interfaces instead of concrete classes to reduce tight coupling (DIP).
+
+
+
+2\. Explain the advantages of applying SOLID principles to your project with examples.
+
+
+
+* Improves code organization by clearly separating responsibilities.
+* Makes the system easier to understand and read.
+* Increases maintainability because changes in one part do not heavily affect other parts.
+* Reduces tight coupling between components.
+* Makes the system more flexible and easier to extend with new features.
+* Improves testability since dependencies can be replaced with mock implementations.
+* Helps prevent large, complex classes that are difficult to manage.
+
+
+
+3\. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+
+
+* Leads to tightly coupled code, making changes risky and difficult.
+* Creates large classes that handle too many responsibilities.
+* Makes debugging and maintenance more complicated.
+* Reduces flexibility when adding new features or modifying existing ones.
+* Makes unit testing harder due to strong dependencies between components.
+* Increases the chance of introducing bugs when modifying the system.
+* Results in rigid and fragile system architecture as the project grows.
