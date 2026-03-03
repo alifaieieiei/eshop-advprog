@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
+// Single Responsibility Principle
 @Repository
 public class ProductRepository {
 
@@ -32,6 +33,7 @@ public class ProductRepository {
         return null;
     }
 
+    // Open/Closed Principle
     public Product update(Product updatedProduct) {
         for (int i = 0; i < productData.size(); i++) {
             if (productData.get(i).getProductId()
