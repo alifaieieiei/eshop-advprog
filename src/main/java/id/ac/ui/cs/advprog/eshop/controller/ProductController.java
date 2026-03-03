@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// Single Responsibility Principle
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -58,9 +59,11 @@ public class ProductController {
     }
 }
 
+// Single Responsibility Principle
 @Controller
 @RequestMapping("/car")
 class CarController extends ProductController {
+    // Dependency Inversion Principle
     @Autowired
     private CarServiceImpl carservice;
 
@@ -84,6 +87,7 @@ class CarController extends ProductController {
         return "carList";
     }
 
+    // Liskov Substitution Principle
     @GetMapping("/editCar/{carId}")
     public String editCarPage(@PathVariable String carId, Model model) {
         Car car = carservice.findById(carId);
