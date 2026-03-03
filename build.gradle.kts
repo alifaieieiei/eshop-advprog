@@ -28,7 +28,6 @@ repositories {
 val seleniumJavaVersion = "4.14.1"
 val seleniumJupiterVersion = "5.0.1"
 val webdrivermanagerVersion = "5.6.3"
-val junitJupiterVersion = "5.9.1"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -44,17 +43,14 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.11.0")
 }
 
-tasks.register<Test>("unitTest") {
-    description = "Runs unit tests."
-    group = "verification"
-
+tasks.test {
     filter {
         excludeTestsMatching("*FunctionalTest")
     }
     finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.jacocoTestReport{
+tasks.jacocoTestReport {
     dependsOn(tasks.test)
 }
 
@@ -65,6 +61,7 @@ tasks.register<Test>("functionalTest") {
     filter {
         includeTestsMatching("*FunctionalTest")
     }
+    useJUnitPlatform()
 }
 
 tasks.withType<Test>().configureEach {
