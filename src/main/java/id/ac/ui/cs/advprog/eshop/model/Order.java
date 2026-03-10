@@ -2,7 +2,7 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import lombok.Getter;
 import java.util.List;
-import id.ac.ui.cs.advprog.eshop.enums.OrderStatus; 
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 
 @Getter
 public class Order {
