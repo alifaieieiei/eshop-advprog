@@ -15,12 +15,19 @@ class PaymentRepositoryTest {
     private PaymentRepository paymentRepository;
     private Payment payment;
     private Order order;
+    private List<Product> products;
 
     @BeforeEach
     void setUp() {
         paymentRepository = new PaymentRepository();
 
-        List<Product> products = new ArrayList<>();
+        products = new ArrayList<>();
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(2);
+        products.add(product1);
+
         order = new Order("order-123", products, 123L, "test");
 
         Map<String, String> paymentData = new HashMap<>();
