@@ -53,3 +53,34 @@ Secure coding practices I did:
 * Makes unit testing harder due to strong dependencies between components.
 * Increases the chance of introducing bugs when modifying the system.
 * Results in rigid and fragile system architecture as the project grows.
+
+
+
+**REFLECTION 4**
+
+
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+
+
+The TDD flow was useful because by writing the tests first, it gives a clear picture on how the src file codes should be like.
+
+
+
+2\. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+
+
+F: My tests run quickly
+
+I: Tests don't depend on each other
+
+R: Same result every time
+
+S: Uses assertEquals, assertThrows, etc.
+
+T: 
+
+
+
