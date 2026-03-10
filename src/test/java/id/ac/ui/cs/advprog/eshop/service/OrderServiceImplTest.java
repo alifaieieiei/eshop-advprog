@@ -52,7 +52,7 @@ class OrderServiceImplTest {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).save(order);
 
-        Order result = orderService.create(order);
+        Order result = orderService.createOrder(order);
         verify(orderRepository, times(1)).save(order);
         assertEquals(order.getId(), result.getId());
     }
@@ -62,7 +62,7 @@ class OrderServiceImplTest {
         Order order = orders.get(1);
         doReturn(order).when(orderRepository).findById(order.getId());
 
-        assertNull(orderService.create(order));
+        assertNull(orderService.createOrder(order));
         verify(orderRepository, times(0)).save(order);
     }
 
@@ -126,7 +126,7 @@ class OrderServiceImplTest {
 
         doReturn(orderList).when(orderRepository).findAllByAuthor(order.getAuthor());
 
-        List<Order> results = orderService.findByAuthor(order.getAuthor());
+        List<Order> results = orderService.findAllByAuthor(order.getAuthor());
         for (Order result : results) {
             assertEquals(order.getAuthor(), result.getAuthor());
         }
@@ -139,7 +139,7 @@ class OrderServiceImplTest {
         doReturn(new ArrayList<>()).when(orderRepository)
                 .findAllByAuthor(order.getAuthor().toLowerCase());
 
-        List<Order> results = orderService.findByAuthor(order.getAuthor().toLowerCase());
+        List<Order> results = orderService.findAllByAuthor(order.getAuthor().toLowerCase());
         assertTrue(results.isEmpty());
     }
 }
