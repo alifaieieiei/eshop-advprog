@@ -66,6 +66,8 @@ class PaymentServiceImplTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("voucherCode", "ESHOP123");
 
+        when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
+
         Payment result = paymentService.addPayment(order, "VOUCHER", paymentData);
 
         assertEquals("REJECTED", result.getStatus());
@@ -76,6 +78,8 @@ class PaymentServiceImplTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("bankName", "BCA");
         paymentData.put("referenceCode", "REF123456");
+        
+        when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
 
         Payment result = paymentService.addPayment(order, "BANK_TRANSFER", paymentData);
 
@@ -87,6 +91,8 @@ class PaymentServiceImplTest {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("referenceCode", "REF123456");
 
+        when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
+
         Payment result = paymentService.addPayment(order, "BANK_TRANSFER", paymentData);
 
         assertEquals("REJECTED", result.getStatus());
@@ -96,6 +102,8 @@ class PaymentServiceImplTest {
     void testAddPaymentBankTransferMissingReferenceCode() {
         Map<String, String> paymentData = new HashMap<>();
         paymentData.put("bankName", "BCA");
+
+        when(paymentRepository.save(any(Payment.class))).thenAnswer(i -> i.getArgument(0));
 
         Payment result = paymentService.addPayment(order, "BANK_TRANSFER", paymentData);
 
@@ -113,6 +121,19 @@ class PaymentServiceImplTest {
 
         assertEquals("SUCCESS", result.getStatus());
         verify(orderService, times(1)).updateStatus(order.getId(), "SUCCESS");
+    }
+
+    @Test
+    void testSetStatusToRejected() {
+        Map<String, String> paymentData = new HashMap<>();
+        Payment payment = new Payment("test-id", "BANK_TRANSFER", paymentData, order);
+
+        when(paymentRepository.save(any(Payment.class))).thenReturn(payment);
+
+        Payment result = paymentService.setStatus(payment, "REJECTED");
+
+        assertEquals("REJECTED", result.getStatus());
+        verify(orderService, times(1)).updateStatus(order.getId(), "FAILED");
     }
 
     @Test
